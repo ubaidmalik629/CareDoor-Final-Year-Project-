@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Receptionist's Form</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/adminstyle.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'all.min.css' %}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 40px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f2f2f2;
+      margin-right: 150px;
+    }
+  
+    .form-group {
+      margin-bottom: 20px;
+      color: #225EA6;
+      width: 50%;
+
+    }
+  
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      text-align: left;
+      
+    }
+  
+    .form-group input {
+      width: 100%;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      color: #225EA6;
+    }
+  
+    .form-group2 {
+      margin-bottom: 20px;
+      color: #225EA6;
+      padding-left: 10px;
+      width: 50%;
+    }
+    .form-group2 label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      text-align: left;
+    }
+  
+    .form-group2 input {
+      width: 100%;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      color: #225EA6;
+    }
+  
+    .form-group4 {
+      margin-bottom: 20px;
+      color: #225EA6;
+      padding-left: 10px;
+      width: 50%;
+    }
+    .form-group4 label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      text-align: left;
+    }
+  
+    .form-group4 input {
+      width: 100%;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      color: #225EA6;
+    }
+    .form-group5 {
+      margin-bottom: 20px;
+      color: #225EA6;
+      width: 50%;
+    }
+    .form-group5 label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;      
+    }
+  
+    .form-group5 input {
+      width: 100%;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      color: #225EA6;
+    }
+    .form-group6 {
+      margin-bottom: 20px;
+      color: #225EA6;
+      padding-left: 10px;
+      width: 50%;
+    }
+    .form-group6 label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+  
+    .form-group6 input {
+      width: 100%;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      color: #225EA6;
+    }
+        .form-group1{
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-group3{
+            display: flex;
+            justify-content: space-between;
+        }
+        button{
+            margin-top: 20px;
+            border: none;
+           
+        }
+        label {
+          text-align: left;
+        }
+        .closing-dash {
+    background-color: #225EA6;
+    width: 340px;
+    padding: 10px;
+    height: 100%;
+    height: 100vh;
+    position: absolute;
+    top:0;
+    left:0;
+  }
+  
+  .closing-dash a {
+    font-size: 16px;
+    line-height: 1;
+    background: #1a559d;
+    padding: 10px 10px;
+  }
+  
+  .closing-dash a:hover {
+    background-color: #0f417e;
+  }
+  
+  span {
+    padding-right: 10px;
+    margin-left: 5px;
+  }
+  
+  .closing-dash p {
+    color: white;
+    margin-left: 5px;
+  text-align: justify;
+  padding: 5px;
+  margin-right: 6px;
+  font-size: 14px;
+  }
+  .lines{
+    text-align: center;
+  
+  }
+  </style>
+</head>
+<body style="font-family: 'Times New Roman', Times, serif;">
+  <div class="closing-dash">
+    <img src="{% static 'images/logo.png' %}" class="mx-auto d-block img-thumbnail mb-3" style="height: 80px;">
+ <p style="color: white;font-weight: bold;/* background-color: #94CCDF; */padding: 10px;font-size: larger;align-items: center;"
+      class="text-center
+    ">CAREDOOR</p>
+    <a href="/dctor-page2/" style="display: block; color: white; text-decoration: none; margin-top: 5px;"><span><svg
+          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-heart"
+          viewBox="0 0 16 16">
+          <path
+            d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z" />
+        </svg></span>Doctor</a>
+        <a href="/recep-page2/" style="display: block; color: white; text-decoration: none; margin-top: 5px;"><span><svg
+          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-rolodex"
+          viewBox="0 0 16 16">
+          <path d="M8 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+          <path
+            d="M1 1a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h.5a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h.5a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H6.707L6 1.293A1 1 0 0 0 5.293 1H1Zm0 1h4.293L6 2.707A1 1 0 0 0 6.707 3H15v10h-.085a1.5 1.5 0 0 0-2.4-.63C11.885 11.223 10.554 10 8 10c-2.555 0-3.886 1.224-4.514 2.37a1.5 1.5 0 0 0-2.4.63H1V2Z" />
+        </svg></span>Receptionist</a>
+     
+        <a href="/patient-form/" style="display: block; color: white; text-decoration: none; margin-top: 5px;"><span><svg
+          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse-fill"
+          viewBox="0 0 16 16">
+          <path
+            d="M1.475 9C2.702 10.84 4.779 12.871 8 15c3.221-2.129 5.298-4.16 6.525-6H12a.5.5 0 0 1-.464-.314l-1.457-3.642-1.598 5.593a.5.5 0 0 1-.945.049L5.889 6.568l-1.473 2.21A.5.5 0 0 1 4 9H1.475Z" />
+          <path
+            d="M.88 8C-2.427 1.68 4.41-2 7.823 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C11.59-2 18.426 1.68 15.12 8h-2.783l-1.874-4.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.88Z" />
+        </svg></span>Patient</a>
+        
+        <a href="../cashflow/" style="display: block; color: white; text-decoration: none; margin-top: 5px;"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pie-chart-fill" viewBox="0 0 16 16">
+          <path d="M15.985 8.5H8.207l-5.5 5.5a8 8 0 0 0 13.277-5.5zM2 13.292A8 8 0 0 1 7.5.015v7.778l-5.5 5.5zM8.5.015V7.5h7.485A8.001 8.001 0 0 0 8.5.015z"/>
+        </svg></span>Cashflow</a><br><br>
+
+        <p style="text-align: center">..................<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
+          <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01L8 2.748ZM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Z"/>
+          <path d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162l-1.874-4.686Z"/>
+        </svg>....................</p>
+
+    <p>Thank you for choosing <b><i>"CareDoor Hospital"</i></b>—a place where care meets excellence, and where smiles
+      illuminate the corridors of healing. Together, let's build a healthier and happier community.<br><br>
+
+      <i><u>Wishing you good health and happiness</u></i><span><svg xmlns="http://www.w3.org/2000/svg" width="16"
+          height="16" fill="currentColor" class="bi bi-emoji-heart-eyes-fill" viewBox="0 0 16 16">
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM4.756 4.566c.763-1.424 4.02-.12.952 3.434-4.496-1.596-2.35-4.298-.952-3.434zm6.559 5.448a.5.5 0 0 1 .548.736A4.498 4.498 0 0 1 7.965 13a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .548-.736h.005l.017.005.067.015.252.055c.215.046.515.108.857.169.693.124 1.522.242 2.152.242.63 0 1.46-.118 2.152-.242a26.58 26.58 0 0 0 1.109-.224l.067-.015.017-.004.005-.002zm-.07-5.448c1.397-.864 3.543 1.838-.953 3.434-3.067-3.554.19-4.858.952-3.434z" />
+        </svg></span><br><br>
+
+      The <b><i>"CareDoor"</i></b> Team <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+        fill="currentColor" class="bi bi-person-hearts" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M11.5 1.246c.832-.855 2.913.642 0 2.566-2.913-1.924-.832-3.421 0-2.566ZM9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276ZM15 2.165c.555-.57 1.942.428 0 1.711-1.942-1.283-.555-2.281 0-1.71Z" />
+      </svg>
+    </p>
+  
+  </div>
+  <div class="container" style="overflow: auto" style="border: #225EA6;">
+
+    <form id="myForm" method="post">
+
+      {% csrf_token %}
+
+      <h1 style="text-align: center; color: #225EA6; margin-bottom: 50px;">Update Receptionist</h1> 
+      <div class="form-group1">
+      <div class="form-group">
+        <label for="f_name">First Name:</label>
+        <input type="text" id="f_name" name="f_name" value="{{receptionist.first_name}}" required>
+      </div>
+      <div class="form-group2">
+        <label for="l_name">Last Name:</label>
+        <input type="text" id="l_name" name="l_name" value="{{receptionist.last_name}}" required>
+      </div>
+    </div> 
+    <div class="form-group3">
+      <div class="form-group5">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{receptionist.email}}" required>
+      </div>
+      <div class="form-group4">
+        <label for="contact">Phone Number:</label>
+        <input type="tel" id="contact" name="contact" value="{{receptionist.contact}}" required>
+      </div>
+      </div>
+      <div class="form-group3">
+      <div class="form-group5">
+        <label for="age">Age:</label>
+        <input type="age" id="age" name="age" value="{{receptionist.age}}" required>
+      </div>
+      <div class="form-group6">
+        <label for="gender">Gender:</label>
+        <input type="gender" id="gender" name="gender" value="{{receptionist.gender}}" required>
+      </div>
+      </div>
+      <div class="form-group1">
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" value="{{receptionist.password}}" required>
+        </div>
+        <div class="form-group6">
+          <label for="address">Address:</label>
+          <input type="address" id="address" name="address" value="{{receptionist.address}}" required>
+      </div>
+      </div>
+      <button>
+        <a class="btn btn-primary text-center pe-5 ps-5" onclick="submitForm()" href="#">Save</a>
+    </button>
+    </form>
+  </div>
+</body>
+
+<script>
+  function submitForm() {
+      document.getElementById("myForm").submit();
+  }
+  </script>
+
+</html>

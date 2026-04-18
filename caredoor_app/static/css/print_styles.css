@@ -1,0 +1,15 @@
+body {
+    font-size: 10pt;
+  }
+  
+  .descrip h1,
+  .descrip p {
+    display: none;
+  }
+  
+  .prescription {
+    width: 100%;
+    border: none;
+    padding: 0;
+  }
+

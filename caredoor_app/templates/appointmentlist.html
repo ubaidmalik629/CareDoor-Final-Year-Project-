@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Appointment List</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/receptionstyle.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'all.min.css' %}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<style>
+  .container {
+   max-width: 800px;
+   margin: 20px auto;
+   padding: 40px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   background-color: #f2f2f2;
+   margin-right: 150px;
+   height: 600px;
+   overflow: auto;
+ }
+ table {
+width: 100%;
+border-collapse: collapse;
+}
+
+thead th {
+background-color: #f2f2f2;
+border-bottom: 2px solid #ccc;
+padding: 10px;
+text-align: center;
+color: #225EA6;
+}
+
+tbody td {
+border-bottom: 1px solid #ccc;
+padding: 10px;
+}
+
+tbody tr:nth-child(even) {
+background-color: #f9f9f9;
+}
+.closing-dash {
+ background-color: #225EA6;
+ width: 340px;
+ padding: 10px;
+ height: 100%;
+ height: 100vh;
+ position: absolute;
+ top:0;
+ left:0;
+}
+
+.closing-dash a {
+ font-size: 16px;
+ line-height: 1;
+ background: #1a559d;
+ padding: 10px 10px;
+}
+
+.closing-dash a:hover {
+ background-color: #0f417e;
+}
+
+span {
+ padding-right: 10px;
+ margin-left: 5px;
+}
+
+.closing-dash p {
+ color: white;
+ margin-left: 5px;
+text-align: justify;
+padding: 5px;
+margin-right: 6px;
+font-size: 14px;
+}
+.lines{
+ text-align: center;
+
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 1;
+}
+
+/* Styling for the popup box */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  text-align: center;
+  overflow: auto;
+}
+
+@media print{
+  body * {
+    visibility: hidden;
+  }
+.print-container, .print-container :not(button) {
+    visibility: visible;
+
+  }
+
+}
+
+ </style>
+<body style="font-family: 'Times New Roman', Times, serif;">
+      <div class="closing-dash">
+        <img src="{% static 'images/logo.png' %}" class="mx-auto d-block img-thumbnail mb-3" style="height: 80px;">
+     <p style="color: white;font-weight: bold;/* background-color: #94CCDF; */padding: 10px;font-size: larger;align-items: center;"
+      class="text-center
+    ">CAREDOOR</p>
+
+        <a href="/receptionist_profile/" style="display: block; color: white; text-decoration: none; margin-top: 5px;"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+          <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+          <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+        </svg></span>Profile</a>
+
+        <a href="/registerpatient/" style="display: block; color: white; text-decoration: none; margin-top: 5px;"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-plus-fill" viewBox="0 0 16 16">
+      <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z"/>
+      <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585c.055.156.085.325.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5c0-.175.03-.344.085-.5ZM8.5 6.5V8H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V9H6a.5.5 0 0 1 0-1h1.5V6.5a.5.5 0 0 1 1 0Z"/>
+    </svg></span>Register Patient</a>
+
+        
+        <a href="/appointmentlist/" style="display: block; color: white; text-decoration: none; margin-top: 5px;"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+        <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+      </svg></span>Appointment List</a>
+
+
+
+        <p style="text-align: center">..................<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
+          <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01L8 2.748ZM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Z"/>
+          <path d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162l-1.874-4.686Z"/>
+        </svg>....................</p>
+
+    <p>Thank you for choosing <b><i>"CareDoor Hospital"</i></b>—a place where care meets excellence, and where smiles
+      illuminate the corridors of healing. Together, let's build a healthier and happier community.<br><br>
+
+      <i><u>Wishing you good health and happiness</u></i><span><svg xmlns="http://www.w3.org/2000/svg" width="16"
+          height="16" fill="currentColor" class="bi bi-emoji-heart-eyes-fill" viewBox="0 0 16 16">
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM4.756 4.566c.763-1.424 4.02-.12.952 3.434-4.496-1.596-2.35-4.298-.952-3.434zm6.559 5.448a.5.5 0 0 1 .548.736A4.498 4.498 0 0 1 7.965 13a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .548-.736h.005l.017.005.067.015.252.055c.215.046.515.108.857.169.693.124 1.522.242 2.152.242.63 0 1.46-.118 2.152-.242a26.58 26.58 0 0 0 1.109-.224l.067-.015.017-.004.005-.002zm-.07-5.448c1.397-.864 3.543 1.838-.953 3.434-3.067-3.554.19-4.858.952-3.434z" />
+        </svg></span><br><br>
+
+      The <b><i>"CareDoor"</i></b> Team <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+        fill="currentColor" class="bi bi-person-hearts" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M11.5 1.246c.832-.855 2.913.642 0 2.566-2.913-1.924-.832-3.421 0-2.566ZM9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276ZM15 2.165c.555-.57 1.942.428 0 1.711-1.942-1.283-.555-2.281 0-1.71Z" />
+      </svg>
+    </p>
+      
+      </div>
+
+    <div class="container" style="overflow: auto" style="overflow: auto">
+        <h1 style="text-align: center; color: #225EA6; margin-bottom: 50px;">Today's Appointment</h1> 
+
+  <table style="overflow: auto">
+    <thead>
+        <th>Patient ID</th>
+        <th>Patient Name</th>
+        <th>Doctor Name</th>
+        <th>Date/Time</th>
+        <th>Receipt</th>
+    </thead>
+    <tbody>
+      {% for appointment in appointments %}
+      <tr>
+        <td>{{ appointment.patient_id }}</td>
+        <td>{{ appointment.name }}</td>
+        <td>{{ appointment.doctor }}</td>
+        <td>{{ appointment.start_time }}</td>
+        <td><button onclick="showPoupup({{appointment.id}})" id="showPopupBtn{{appointment.id}}" style="display: block; width: 40px;height: 40px;  background-color: transparent; border: none; outline: none; color: #1a559d; text-decoration: none;"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
+          <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5ZM9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8Zm1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5Zm-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96c.026-.163.04-.33.04-.5ZM7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z"/>
+        </svg></span></button></td>
+        
+        <div class="overlay" id="overlay{{appointment.id}}"></div>
+
+        <!-- Popup box -->
+        <div style="width: 500px; height: 650px; " id="popup{{appointment.id}}" class="popup  print-container">
+          <button style="float: right; font-size: 30px; color: #1a559d;" id="closePopupBtn{{appointment.id}}" type="button" class="close" aria-label="Close" onclick="closePopup({{appointment.id}})">&times</button>
+          
+          <img src="{% static 'images/logo.png' %}" class="mx-auto d-block img-thumbnail mb-3" style="height: 70px; float: left;">
+          <strong style="text-align: center; font-size: 40px;">CareDoor</strong>
+          <br>
+          <br>
+          <br>
+          <p style="text-align: left; display: flex; justify-content: space-between;">
+            <strong style="flex: 1;">Patient_id:</strong>
+            <span style="flex: 2; text-align: center;">Pt-{{ appointment.patient_id }}</span>
+          </p>          
+          <p style="text-align: left; display: flex; justify-content: space-between;">
+            <strong style="flex: 1;">Patient_Name:</strong>
+            <span style="flex: 2; text-align: center;">{{ appointment.name }}</span>
+          </p>
+          
+          <p style="text-align: left; display: flex; justify-content: space-between;">
+            <strong style="flex: 1;">Doctor_Name:</strong>
+            <span style="flex: 2; text-align: center;">{{ appointment.doctor }}</span>
+          </p>
+          
+          <p style="text-align: left; display: flex; justify-content: space-between;">
+            <strong style="flex: 1;">Date:</strong>
+            <span style="flex: 2; text-align: center;">{{appointment.start_time}}</span>
+          </p>
+          
+          <p style="text-align: left; display: flex; justify-content: space-between;">
+            <strong style="flex: 1;">Service:</strong>
+            <span style="flex: 2; text-align: center;">Private</span>
+          </p>
+          
+          <p style="text-align: left; display: flex; justify-content: space-between;">
+            <strong style="flex: 1;">Amount:</strong>
+            <span style="flex: 2; text-align: center;">{{appointment.fee}}/</span>
+          </p>
+          <p style="text-align: center">..................<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-pulse" viewBox="0 0 16 16">
+            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01L8 2.748ZM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Z"/>
+            <path d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162l-1.874-4.686Z"/>
+          </svg>....................</p>
+  
+      <p>Thank you for choosing <b><i>"CareDoor Hospital"</i></b>—a place where care meets excellence, and where smiles
+        illuminate the corridors of healing. Together, let's build a healthier and happier community.<br><br>
+  
+        <i><u>Wishing you good health and happiness</u></i><span><svg xmlns="http://www.w3.org/2000/svg" width="16"
+            height="16" fill="currentColor" class="bi bi-emoji-heart-eyes-fill" viewBox="0 0 16 16">
+            <path
+              d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM4.756 4.566c.763-1.424 4.02-.12.952 3.434-4.496-1.596-2.35-4.298-.952-3.434zm6.559 5.448a.5.5 0 0 1 .548.736A4.498 4.498 0 0 1 7.965 13a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .548-.736h.005l.017.005.067.015.252.055c.215.046.515.108.857.169.693.124 1.522.242 2.152.242.63 0 1.46-.118 2.152-.242a26.58 26.58 0 0 0 1.109-.224l.067-.015.017-.004.005-.002zm-.07-5.448c1.397-.864 3.543 1.838-.953 3.434-3.067-3.554.19-4.858.952-3.434z" />
+          </svg></span><br>
+  
+        The <b><i>"CareDoor"</i></b> Team <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+          fill="currentColor" class="bi bi-person-hearts" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M11.5 1.246c.832-.855 2.913.642 0 2.566-2.913-1.924-.832-3.421 0-2.566ZM9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276ZM15 2.165c.555-.57 1.942.428 0 1.711-1.942-1.283-.555-2.281 0-1.71Z" />
+        </svg>
+      </p>
+
+      <button onclick="window.print();" style="float: right; background-color: #1a559d; 
+        border: none; outline: none; color: #f2f2f2;">Print</button>
+
+      </tr>
+      {% endfor %}
+  </tbody>
+  </table>
+  </div>
+</body>
+<script>
+  function showPoupup(appointmentId){
+    // Get references to the button, overlay, and popup elements
+    const overlay = document.getElementById("overlay" + appointmentId);
+    const popup = document.getElementById("popup" + appointmentId);
+
+    overlay.style.display = "block";
+    popup.style.display = "block";
+  }
+
+  function closePopup(appointmentId){
+    const overlay = document.getElementById("overlay" + appointmentId);
+    const popup = document.getElementById("popup" + appointmentId);
+
+    overlay.style.display = "none";
+    popup.style.display = "none";
+  }
+</script>
+
+</html>

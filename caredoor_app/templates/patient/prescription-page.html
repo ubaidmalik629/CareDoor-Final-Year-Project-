@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Prescription</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/presc.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'js/presc.js' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/print_styles.css' %}" media="print">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"
+    integrity="sha256-srhz/t0GOrmVGZryG24MVDyFDYZpvUH2+dnJ8FbpGi0=" crossorigin="anonymous"></script>
+    </head>
+
+
+<body style="font-family: 'Times New Roman', Times, serif;" class="print-container">
+  <a href="/patient-prescription/">
+    <button style="background-color: #1a559d; border: none; outline: none; color: #f2f2f2;"><span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+      </svg>
+    </span>Back</button>
+  </a>
+<div class="wrapper">
+    <div class="prescription_form">
+        <table class="prescription" data-prescription_id="<?php echo $presc->prescription_id; ?>" border="1">
+            <tbody>
+                <tr height="15%">
+                    <td colspan="2">
+                        <div class="header">
+                            <div class="logo">
+                                <img src="{% static 'images/logo.png' %}" alt="image" />
+                            </div>
+                            <div class="credentials">
+                                <p><b>Doctor Name: </b>{{prescription.doctor.name}}</p>
+                                <p><b>Patient Name: </b>{{prescription.patient.name}}</p>
+
+                            </div>
+                            <div class="credentials">
+                              <p><b>Created_at: </b>{{prescription.created_at}}</p>
+                              <p><b>Updated_at: </b>{{prescription.updated_at}}</p>
+                            </div>
+                        
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    </td>
+                    <td width="60%" valign="top">
+
+                        <div class="medicine">
+                            <section class="med_list">
+                            </section>
+                            <textarea style="margin-left: 5%; margin-bottom: 10px; width: 90%; border: 4px; height: 80%;" name="details" id="details" cols="30" rows="10">{{prescription.details}}</textarea>
+                            <p>Thank you for choosing <b><i>"CareDoor Hospital"</i></b>—a place where care meets excellence, and where smiles
+                              illuminate the corridors of healing. Together, let's build a healthier and happier community.<br><br>
+                        
+                              <i><u>Wishing you good health and happiness</u></i><span><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                  height="16" fill="currentColor" class="bi bi-emoji-heart-eyes-fill" viewBox="0 0 16 16">
+                                  <path
+                                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zM4.756 4.566c.763-1.424 4.02-.12.952 3.434-4.496-1.596-2.35-4.298-.952-3.434zm6.559 5.448a.5.5 0 0 1 .548.736A4.498 4.498 0 0 1 7.965 13a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .548-.736h.005l.017.005.067.015.252.055c.215.046.515.108.857.169.693.124 1.522.242 2.152.242.63 0 1.46-.118 2.152-.242a26.58 26.58 0 0 0 1.109-.224l.067-.015.017-.004.005-.002zm-.07-5.448c1.397-.864 3.543 1.838-.953 3.434-3.067-3.554.19-4.858.952-3.434z" />
+                                </svg></span><br><br>
+                        
+                              The <b><i>"CareDoor"</i></b> Team <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-person-hearts" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                  d="M11.5 1.246c.832-.855 2.913.642 0 2.566-2.913-1.924-.832-3.421 0-2.566ZM9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276ZM15 2.165c.555-.57 1.942.428 0 1.711-1.942-1.283-.555-2.281 0-1.71Z" />
+                              </svg>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+        
+        <div class="button_group button-group-print">
+          <button id="print-button" style="float: right; background-color: #225ea6; border: #225ea6; color: white; margin-right: 50px;">Print</button>
+        </div>
+        
+    </div>   
+</div>
+</body>
+
+<script>
+  document.getElementById("print-button").addEventListener("click", function() {
+    window.print();
+  });
+</script>
+
+
+</html>
