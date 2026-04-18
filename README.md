@@ -3,7 +3,6 @@
 ![Django](https://img.shields.io/badge/Django-4.2.2-brightgreen)
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Latest-336791)
-![License](https://img.shields.io/badge/License-MIT-green)
 
 ## 📋 Overview
 
@@ -440,9 +439,6 @@ This is an academic project. If you're interested in contributing improvements o
 4. Push to the branch (`git push origin feature/improvement`)
 5. Create a Pull Request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## ✍️ Author
 
